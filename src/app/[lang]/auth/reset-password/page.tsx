@@ -16,6 +16,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import Link from "next/link";
 
 export default function ResetPasswordPage() {
   const { language, t } = useLanguage();
