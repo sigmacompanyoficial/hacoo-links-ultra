@@ -47,7 +47,7 @@ export default function ProductCatalog() {
     <section id="catalogo" className="py-20">
       <div className="mb-16">
         <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tighter uppercase italic">
-          {t("catalog.title")} <span className="text-blue-500">Elite</span>
+          {t("catalog.title")} <span className="text-blue-500">Ultra</span>
         </h2>
         <p className="text-zinc-400 text-lg max-w-3xl leading-relaxed">
           {t("catalog.subtitle")}
@@ -90,7 +90,7 @@ export default function ProductCatalog() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden mb-12"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 p-8 bg-zinc-900/30 border border-zinc-800/50 rounded-3xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 p-8 bg-zinc-900/30 border border-zinc-800/50 rounded-2xl">
               {/* Category Filter */}
               <div>
                 <h3 className="text-zinc-500 text-xs font-black uppercase tracking-widest mb-6 flex items-center gap-2">
@@ -181,7 +181,7 @@ export default function ProductCatalog() {
         </div>
       ) : (
         <div className="py-40 text-center bg-zinc-900/20 border border-dashed border-zinc-800 rounded-[40px]">
-          <div className="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full bg-zinc-900 text-zinc-700">
+          <div className="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-xl bg-zinc-900 text-zinc-700">
             <Search size={40} />
           </div>
           <p className="text-white text-2xl font-black mb-3">{t("catalog.empty")}</p>

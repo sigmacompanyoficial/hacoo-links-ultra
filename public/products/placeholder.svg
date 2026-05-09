@@ -8,6 +8,6 @@
   <rect width="800" height="600" fill="#16161f"/>
   <rect x="200" y="150" width="400" height="300" rx="20" fill="url(#g1)" opacity="0.1"/>
   <path d="M400 230 L450 330 L350 330 Z" fill="url(#g1)" opacity="0.5"/>
-  <text x="400" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="white" opacity="0.3">HACOO ELITE</text>
+  <text x="400" y="400" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="bold" fill="white" opacity="0.3">HACOO ULTRA</text>
   <text x="400" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" fill="white" opacity="0.2">Imagen del Producto</text>
 </svg>

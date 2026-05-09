@@ -1,14 +1,14 @@
-# 💎 Hacoo Elite — The Premium Affiliate Platform
+# 💎 Hacoo Ultra — The Premium Affiliate Platform
 
-![Hacoo Elite](https://hacooelite.com/og-image.jpg)
+![Hacoo Ultra](https://hacooultra.com/og-image.jpg)
 
-**Hacoo Elite** is a high-performance, ultra-premium affiliate platform built with **Next.js 15**, **Firebase**, and **Tailwind CSS**. It provides a curated catalog of top-tier products with a focus on luxury streetwear, technology, and accessories.
+**Hacoo Ultra** is a high-performance, ultra-premium affiliate platform built with **Next.js 15**, **Firebase**, and **Tailwind CSS**. It provides a curated catalog of top-tier products with a focus on luxury streetwear, technology, and accessories.
 
 ---
 
 ## ✨ Key Features
 
-- **💎 Elite UI/UX**: Ultra-modern design with glassmorphism, dynamic animations (Framer Motion), and sleek dark mode.
+- **💎 Ultra UI/UX**: Ultra-modern design with glassmorphism, dynamic animations (Framer Motion), and sleek dark mode.
 - **🔐 Secure Authentication**: Full integration with Firebase Auth (Google & Email/Password).
 - **🛒 Real-time Favorites**: Cloud-synced "Save for later" functionality using Firebase Realtime Database.
 - **🌍 Global Localization**: Advanced i18n system supporting multiple languages (ES, EN, FR, DE, PT).
@@ -35,8 +35,8 @@
 
 ### 2. Installation
 ```bash
-git clone https://github.com/ayoublouah/hacoo-elite.git
-cd hacoo-elite
+git clone https://github.com/ayoublouah/hacoo-ultra.git
+cd hacoo-ultra
 npm install
 ```
 
@@ -62,5 +62,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Built with ❤️ by [Hacoo Elite Team](https://t.me/HacooLinksElite)
+Built with ❤️ by [Hacoo Ultra Team](https://t.me/hacoolinkssigma)
 

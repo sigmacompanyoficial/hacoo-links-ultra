@@ -15,12 +15,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center h-12 w-auto">
-              <img
-                src="/LOGO.png"
-                alt="Hacoo Elite Logo"
-                className="h-full w-auto object-contain"
-              />
+            <Link href="/" className="flex items-center group">
+              <div className="flex flex-col leading-none">
+                <span className="text-white font-black text-2xl tracking-tighter italic">HACOO<span className="text-blue-500">ULTRA</span></span>
+              </div>
             </Link>
             <p className="text-zinc-500 text-sm leading-relaxed">
               {t("footer.desc")}
@@ -63,7 +61,7 @@ export default function Footer() {
                 Recibe alertas en tiempo real de ofertas flash en nuestro canal de Telegram.
               </p>
               <a
-                href="https://t.me/HacooLinksElite"
+                href="https://t.me/hacoolinkssigma"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-zinc-900 text-white px-6 py-4 rounded-xl border border-zinc-800 flex items-center justify-center gap-3 font-black text-sm hover:bg-blue-600 hover:border-blue-500 transition-all shadow-xl"
@@ -79,7 +77,7 @@ export default function Footer() {
         <div className="pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col gap-2">
             <p className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">
-              © {currentYear} HACOO ELITE PLATFORM — TODOS LOS DERECHOS RESERVADOS
+              © {currentYear} HACOO ULTRA PLATFORM — TODOS LOS DERECHOS RESERVADOS
             </p>
             <p className="text-zinc-700 text-[10px] max-w-2xl text-center md:text-left leading-relaxed">
               AVISO: Este sitio web participa en programas de afiliados y puede recibir comisiones por compras realizadas a través de nuestros enlaces. No somos vendedores directos, solo proporcionamos enlaces curados de alta calidad.

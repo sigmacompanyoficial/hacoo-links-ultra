@@ -11,14 +11,14 @@ export default function HeroSection() {
   return (
     <section className="section pt-12 pb-20 overflow-hidden relative min-h-[80vh] flex items-center">
       {/* Background Decorative Element */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl aspect-square bg-blue-600/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl aspect-square bg-blue-600/5 rounded-xl blur-[120px] -z-10" />
 
       <div className="container relative z-10 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-500 text-xs font-black uppercase tracking-widest mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-500 text-xs font-black uppercase tracking-widest mb-8"
         >
           <Sparkles size={14} />
           <span>MÁS DE 100 LINKS NUEVOS CADA DÍA</span>
@@ -31,7 +31,7 @@ export default function HeroSection() {
           className="text-white text-[clamp(2.2rem,12vw,3rem)] leading-[1] sm:text-5xl md:text-8xl font-black mb-8 tracking-tighter uppercase italic"
         >
           {t("hero.title")} <br />
-          <span className="text-blue-500">Hacoo Elite</span>
+          <span className="text-blue-500">Hacoo Ultra</span>
         </motion.h1>
 
         <motion.p
@@ -49,11 +49,11 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10 md:mb-16"
         >
-          <Link href="/products" className="w-full sm:w-auto bg-blue-600 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-blue-500 transition-all shadow-2xl shadow-blue-500/20">
+          <Link href="/products" className="btn btn-primary btn-lg w-full sm:w-auto font-black shadow-2xl shadow-blue-500/20">
             <ShoppingBag size={22} />
             {t("hero.cta")}
           </Link>
-          <a href="https://t.me/HacooLinksElite" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-zinc-900 text-white px-10 py-5 rounded-2xl font-black text-lg border border-zinc-800 flex items-center justify-center gap-3 hover:bg-zinc-800 transition-all">
+          <a href="https://t.me/hacoolinkssigma" target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-lg w-full sm:w-auto font-black">
             <Send size={22} className="text-blue-500" />
             {t("hero.telegram")}
           </a>
