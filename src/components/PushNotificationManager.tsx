@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BellRing, X, CheckCircle2 } from "lucide-react";
 import { requestForToken } from "@/lib/firebase-client";
 import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PushNotificationManager() {
+  const { t } = useLanguage();
   const [showPopup, setShowPopup] = useState(false);
   const [permission, setPermission] = useState<NotificationPermission>("default");
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -23,6 +25,18 @@ export default function PushNotificationManager() {
         return () => clearTimeout(timer);
       }
     }
+  }, []);
+
+  useEffect(() => {
+    // Escuchar evento personalizado desde el Footer u otros componentes
+    const handleShowPush = () => {
+      setShowPopup(true);
+      // Reiniciamos localStorage para asegurar que permita el flujo
+      localStorage.removeItem("hacoo_push_asked");
+    };
+
+    window.addEventListener("show-push-manager", handleShowPush);
+    return () => window.removeEventListener("show-push-manager", handleShowPush);
   }, []);
 
   const handleSubscribe = async () => {
@@ -85,34 +99,34 @@ export default function PushNotificationManager() {
               <X size={18} />
             </button>
             
-            <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-full bg-blue-600/20 text-blue-500 flex items-center justify-center shrink-0">
-                <BellRing size={24} />
+            <div className="flex gap-3 sm:gap-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600/20 text-blue-500 flex items-center justify-center shrink-0">
+                <BellRing size={20} className="sm:w-6 sm:h-6" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm mb-1">¡No te pierdas ninguna oferta!</h3>
-                <p className="text-zinc-400 text-xs leading-relaxed mb-4">
-                  Activa las notificaciones para recibir alertas exclusivas y cupones como el código ULTRA14 directamente en tu dispositivo.
+                <h3 className="text-white font-bold text-xs sm:text-sm mb-1">{t("push.title")}</h3>
+                <p className="text-zinc-400 text-[10px] sm:text-xs leading-relaxed mb-4">
+                  {t("push.desc")}
                 </p>
                 
                 {isSubscribed ? (
-                  <div className="flex items-center gap-2 text-green-500 text-xs font-bold bg-green-500/10 px-3 py-2 rounded-lg">
-                    <CheckCircle2 size={16} />
-                    Suscrito correctamente
+                  <div className="flex items-center gap-2 text-green-500 text-[10px] sm:text-xs font-bold bg-green-500/10 px-3 py-2 rounded-lg">
+                    <CheckCircle2 size={14} />
+                    {t("push.subscribed")}
                   </div>
                 ) : (
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <button 
                       onClick={handleSubscribe}
-                      className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors w-full"
+                      className="bg-blue-600 hover:bg-blue-500 text-white text-[10px] sm:text-xs font-bold px-4 py-2 sm:py-2.5 rounded-xl transition-colors w-full"
                     >
-                      Activar Alertas
+                      {t("push.activate")}
                     </button>
                     <button 
                       onClick={handleDecline}
-                      className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-bold px-4 py-2 rounded-xl transition-colors w-full"
+                      className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-[10px] sm:text-xs font-bold px-4 py-2 sm:py-2.5 rounded-xl transition-colors w-full"
                     >
-                      Más tarde
+                      {t("push.later")}
                     </button>
                   </div>
                 )}

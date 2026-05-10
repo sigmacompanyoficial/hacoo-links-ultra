@@ -58,18 +58,19 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-6">
               <p className="text-zinc-500 text-sm leading-relaxed">
-                Activa las alertas Push o únete a Telegram para recibir el código ULTRA14 y ofertas flash diarias.
+                {t("push.desc")}
               </p>
               
               <button
                 onClick={() => {
-                  localStorage.removeItem("hacoo_push_asked");
-                  window.location.reload();
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("show-push-manager"));
+                  }
                 }}
-                className="bg-blue-600/10 text-blue-500 px-6 py-3 rounded-xl border border-blue-500/20 flex items-center justify-center gap-3 font-black text-xs uppercase hover:bg-blue-600 hover:text-white transition-all w-full text-left"
+                className="bg-blue-600/10 text-blue-500 px-6 py-3 rounded-xl border border-blue-500/20 flex items-center justify-center gap-3 font-black text-[10px] sm:text-xs uppercase hover:bg-blue-600 hover:text-white transition-all w-full text-left"
               >
                 <BellRing size={16} />
-                ACTIVAR ALERTAS PUSH
+                {t("push.activate")}
               </button>
 
               <a

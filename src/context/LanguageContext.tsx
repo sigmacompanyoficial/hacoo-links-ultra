@@ -48,6 +48,11 @@ const translations = {
     "settings.success": "Perfil actualizado correctamente",
     "settings.error": "Error al actualizar",
     "settings.reset_sent": "Enlace de restablecimiento enviado",
+    "push.title": "¡No te pierdas ninguna oferta!",
+    "push.desc": "Activa las notificaciones para recibir alertas exclusivas y cupones como el código ULTRA14 directamente en tu dispositivo.",
+    "push.subscribed": "Suscrito correctamente",
+    "push.activate": "Activar Alertas",
+    "push.later": "Más tarde",
   },
   en: {
     "nav.start": "Home",
@@ -79,6 +84,11 @@ const translations = {
     "settings.success": "Profile updated successfully",
     "settings.error": "Error updating profile",
     "settings.reset_sent": "Reset link sent",
+    "push.title": "Don't miss any offers!",
+    "push.desc": "Enable notifications to receive exclusive alerts and coupons like the ULTRA14 code directly on your device.",
+    "push.subscribed": "Subscribed successfully",
+    "push.activate": "Enable Alerts",
+    "push.later": "Later",
   },
   fr: {
     "nav.start": "Accueil",
@@ -110,6 +120,11 @@ const translations = {
     "settings.success": "Profil mis à jour avec succès",
     "settings.error": "Erreur lors de la mise à jour",
     "settings.reset_sent": "Lien de réinitialisation envoyé",
+    "push.title": "Ne manquez aucune offre !",
+    "push.desc": "Activez les notifications pour recevoir des alertes exclusives et des coupons comme le code ULTRA14 directement sur votre appareil.",
+    "push.subscribed": "Abonné avec succès",
+    "push.activate": "Activer les alertes",
+    "push.later": "Plus tard",
   },
   de: {
     "nav.start": "Startseite",
@@ -141,6 +156,11 @@ const translations = {
     "settings.success": "Profil erfolgreich aktualisiert",
     "settings.error": "Fehler beim Aktualisieren",
     "settings.reset_sent": "Reset-Link gesendet",
+    "push.title": "Verpassen Sie keine Angebote!",
+    "push.desc": "Aktivieren Sie Benachrichtigungen, um exklusive Warnungen und Gutscheine wie den ULTRA14-Code direkt auf Ihr Gerät zu erhalten.",
+    "push.subscribed": "Erfolgreich abonniert",
+    "push.activate": "Benachrichtigungen aktivieren",
+    "push.later": "Später",
   },
   pt: {
     "nav.start": "Início",
@@ -172,6 +192,11 @@ const translations = {
     "settings.success": "Perfil atualizado com sucesso",
     "settings.error": "Erro ao atualizar",
     "settings.reset_sent": "Link de redefinição enviado",
+    "push.title": "Não perca nenhuma oferta!",
+    "push.desc": "Ative as notificações para receber alertas exclusivos e cupons como o código ULTRA14 diretamente no seu dispositivo.",
+    "push.subscribed": "Inscrito com sucesso",
+    "push.activate": "Ativar Alertas",
+    "push.later": "Mais tarde",
   }
 };
 
