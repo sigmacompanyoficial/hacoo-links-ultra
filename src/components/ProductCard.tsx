@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ExternalLink, Tag, Star, Bookmark } from "lucide-react";
+import { ExternalLink, Tag, Star, ShoppingBag } from "lucide-react";
 import { Product } from "@/types";
 import { motion } from "framer-motion";
 
@@ -66,16 +66,16 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
             </span>
           </div>
 
-          {/* Quick Action (Bookmark) Overlay */}
-          <div className="absolute top-4 right-4 z-10 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+          {/* Quick Action (Add to Cart) Overlay */}
+          <div className="absolute top-4 right-4 z-10 lg:translate-x-4 lg:opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 opacity-100 translate-x-0">
             <button
               onClick={handleAddToCart}
               className={`w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-md shadow-xl transition-all ${
-                user ? "bg-white/10 text-white hover:bg-blue-600 hover:text-white" : "bg-black/40 text-zinc-400 cursor-not-allowed"
+                user ? "bg-black/60 text-white hover:bg-blue-600 border border-white/10" : "bg-black/40 text-zinc-400 cursor-not-allowed"
               }`}
-              title={user ? "Guardar favorito" : "Inicia sesión para guardar"}
+              title={user ? "Añadir a la cesta" : "Inicia sesión para añadir"}
             >
-              <Bookmark size={18} className={user ? "fill-current/20" : ""} />
+              <ShoppingBag size={18} className={user ? "text-white" : ""} />
             </button>
           </div>
         </div>

@@ -9,6 +9,7 @@ import { useCart } from "@/context/CartContext";
 
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
+import TopBanner from "@/components/TopBanner";
 
 export default function Header() {
   const pathname = usePathname();
@@ -40,6 +41,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-[1000]">
+      <TopBanner />
       <div className="site-header h-[var(--header-height-mobile)] md:h-[var(--header-height)] bg-[#080808]/85 backdrop-blur-xl border-b border-zinc-900">
         <div className="container header-container h-full flex justify-between items-center">
           {/* Left: Logo */}

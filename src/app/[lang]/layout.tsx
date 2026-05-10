@@ -11,6 +11,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "@/components/CookieConsent";
+import PushNotificationManager from "@/components/PushNotificationManager";
 import "./../globals.css";
 
 const inter = Inter({
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
     images: ["/LOGO.png"],
   },
   verification: {
-    google: "2jHpnfOH-dy0mc6c6VkefIaXKW1YkmFfvC5kVyKylMs",
+    google: "ZbpTCx9Qqiaft36wwg0v3BzFPKMVc0h8RoH20qyin5Q",
   },
   robots: {
     index: true,
@@ -139,7 +140,7 @@ export default async function RootLayout({
           </CartProvider>
         </AuthProvider>
         <Analytics />
-
+        <PushNotificationManager />
         <CookieConsent />
       </body>
     </html>

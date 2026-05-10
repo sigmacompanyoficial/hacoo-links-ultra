@@ -24,7 +24,9 @@ import {
   Settings,
   Cpu,
   BarChart3,
-  Star
+  Star,
+  Bell,
+  Send
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
@@ -43,6 +45,10 @@ export default function AdminDashboard() {
   const [allUsers, setAllUsers] = useState<any[]>([]);
   const [isUpdating, setIsUpdating] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [pushForm, setPushForm] = useState({ title: "", body: "", url: "" });
+  const [isSendingPush, setIsSendingPush] = useState(false);
+  const [pushResult, setPushResult] = useState<{success?: boolean, message?: string} | null>(null);
 
   const fetchUsers = async () => {
     try {
@@ -83,6 +89,39 @@ export default function AdminDashboard() {
       alert("Error al actualizar rol: " + err.message);
     } finally {
       setIsUpdating(null);
+    }
+  };
+
+  const handleSendPush = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!profile?.uid) return;
+    
+    setIsSendingPush(true);
+    setPushResult(null);
+
+    try {
+      const res = await fetch('/api/admin/send-push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: pushForm.title,
+          body: pushForm.body,
+          url: pushForm.url,
+          adminUserId: profile.uid
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setPushResult({ success: true, message: `Enviadas ${data.sent} notificaciones exitosamente.` });
+        setPushForm({ title: "", body: "", url: "" });
+      } else {
+        setPushResult({ success: false, message: data.error || data.message || "Error desconocido" });
+      }
+    } catch (err: any) {
+      setPushResult({ success: false, message: err.message });
+    } finally {
+      setIsSendingPush(false);
     }
   };
 
@@ -170,6 +209,7 @@ export default function AdminDashboard() {
         {[
           { id: "overview", label: "Vista General", icon: BarChart3 },
           { id: "users", label: "Usuarios", icon: Users },
+          { id: "notifications", label: "Notificaciones", icon: Bell },
           { id: "products", label: "Rendimiento", icon: ShoppingBag },
           { id: "system", label: "Sistema", icon: Cpu },
         ].map((tab) => (
@@ -390,6 +430,84 @@ export default function AdminDashboard() {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activeTab === "notifications" && (
+              <motion.div
+                key="notifications"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+              >
+                <div className="bg-zinc-900/30 border border-white/[0.05] rounded-[2rem] p-6 sm:p-8">
+                  <div className="mb-8">
+                    <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                      <Bell className="text-blue-500" /> 
+                      Enviar Notificación Push
+                    </h3>
+                    <p className="text-zinc-500 text-sm mt-2">Envía una alerta en tiempo real a todos los usuarios suscritos.</p>
+                  </div>
+
+                  <form onSubmit={handleSendPush} className="space-y-6 max-w-2xl">
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2">Título de la Alerta</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={pushForm.title}
+                        onChange={e => setPushForm({...pushForm, title: e.target.value})}
+                        placeholder="Ej: ¡Oferta Flash 24H! 🔥"
+                        className="w-full bg-black/20 border border-white/[0.05] focus:border-blue-500/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2">Mensaje</label>
+                      <textarea 
+                        required
+                        rows={3}
+                        value={pushForm.body}
+                        onChange={e => setPushForm({...pushForm, body: e.target.value})}
+                        placeholder="Ej: Usa el código ULTRA14 y llévate un descuento especial hoy."
+                        className="w-full bg-black/20 border border-white/[0.05] focus:border-blue-500/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all resize-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2">Enlace de Destino (Opcional)</label>
+                      <input 
+                        type="url" 
+                        value={pushForm.url}
+                        onChange={e => setPushForm({...pushForm, url: e.target.value})}
+                        placeholder="https://hacoo-ultra.vercel.app/..."
+                        className="w-full bg-black/20 border border-white/[0.05] focus:border-blue-500/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all"
+                      />
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      disabled={isSendingPush}
+                      className="bg-blue-600 hover:bg-blue-500 disabled:bg-blue-600/50 text-white font-bold text-sm px-8 py-4 rounded-xl flex items-center justify-center gap-3 transition-all w-full md:w-auto"
+                    >
+                      {isSendingPush ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          Enviando...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={16} />
+                          Enviar a todos
+                        </>
+                      )}
+                    </button>
+
+                    {pushResult && (
+                      <div className={`p-4 rounded-xl text-sm font-bold flex items-center gap-2 ${pushResult.success ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                        {pushResult.message}
+                      </div>
+                    )}
+                  </form>
                 </div>
               </motion.div>
             )}

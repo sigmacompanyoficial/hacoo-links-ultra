@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingBag, Send } from "lucide-react";
+import { ShoppingBag, Send, BellRing } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
@@ -50,23 +50,35 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Comunidad */}
+          {/* Column 4: Comunidad & Alertas */}
           <div>
             <h4 className="text-white text-xs font-black uppercase tracking-widest mb-8 flex items-center gap-2">
               <span className="w-4 h-[1px] bg-blue-500"></span>
-              {t("footer.community")}
+              Actualizaciones & Alertas
             </h4>
             <div className="flex flex-col gap-6">
               <p className="text-zinc-500 text-sm leading-relaxed">
-                Recibe alertas en tiempo real de ofertas flash en nuestro canal de Telegram.
+                Activa las alertas Push o únete a Telegram para recibir el código ULTRA14 y ofertas flash diarias.
               </p>
+              
+              <button
+                onClick={() => {
+                  localStorage.removeItem("hacoo_push_asked");
+                  window.location.reload();
+                }}
+                className="bg-blue-600/10 text-blue-500 px-6 py-3 rounded-xl border border-blue-500/20 flex items-center justify-center gap-3 font-black text-xs uppercase hover:bg-blue-600 hover:text-white transition-all w-full text-left"
+              >
+                <BellRing size={16} />
+                ACTIVAR ALERTAS PUSH
+              </button>
+
               <a
                 href="https://t.me/hacoolinkssigma"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-zinc-900 text-white px-6 py-4 rounded-xl border border-zinc-800 flex items-center justify-center gap-3 font-black text-sm hover:bg-blue-600 hover:border-blue-500 transition-all shadow-xl"
+                className="bg-zinc-900 text-white px-6 py-3 rounded-xl border border-zinc-800 flex items-center justify-center gap-3 font-black text-xs hover:bg-zinc-800 transition-all w-full"
               >
-                <Send size={18} className="text-blue-400 group-hover:text-white" />
+                <Send size={16} className="text-blue-400 group-hover:text-white" />
                 TELEGRAM OFICIAL
               </a>
             </div>

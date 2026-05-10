@@ -325,9 +325,6 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
 /* ===== HEADER ===== */
 .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: var(--header-height-mobile);
   z-index: 1000;
@@ -347,12 +344,12 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
 #main-content {
   flex-grow: 1;
-  padding-top: var(--header-height-mobile);
+  padding-top: calc(var(--header-height-mobile) + 32px);
 }
 
 @media (min-width: 768px) {
   #main-content {
-    padding-top: var(--header-height);
+    padding-top: calc(var(--header-height) + 32px);
   }
 }
 
