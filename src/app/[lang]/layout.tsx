@@ -133,6 +133,7 @@ export default async function RootLayout({
                     <Footer />
                     <MobileNavbar />
                     <PromoToast />
+                    <PushNotificationManager />
                   </div>
                 </ThemeProvider>
               </LanguageProvider>
@@ -140,7 +141,6 @@ export default async function RootLayout({
           </CartProvider>
         </AuthProvider>
         <Analytics />
-        <PushNotificationManager />
         <CookieConsent />
       </body>
     </html>
