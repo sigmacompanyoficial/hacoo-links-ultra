@@ -48,7 +48,7 @@ export default function Header() {
           <Link href={getPath("/")} className="flex items-center gap-2 group">
             <div className="flex flex-col leading-none">
               <span className="text-white font-black text-xl md:text-2xl tracking-tighter italic">HACOO<span className="text-blue-500">ULTRA</span></span>
-              <span className="text-zinc-500 text-[8px] font-bold uppercase tracking-[0.3em] mt-0.5">Premium Shopping</span>
+              <span className="text-zinc-500 text-[8px] font-bold uppercase tracking-[0.3em] mt-0.5">{t("header.shopping")}</span>
             </div>
           </Link>
 
@@ -95,9 +95,9 @@ export default function Header() {
 
               {/* Config Dropdown */}
               <div className="absolute right-0 mt-3 w-52 bg-[#0d0d0d] border border-zinc-800/50 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[1100] p-3 backdrop-blur-xl">
-                <div className="text-[10px] font-bold uppercase text-zinc-500 px-3 py-2 tracking-widest">Preferencia de Sistema</div>
+                <div className="text-[10px] font-bold uppercase text-zinc-500 px-3 py-2 tracking-widest">{t("header.system_pref")}</div>
                 <div className="flex flex-col gap-1 mt-1">
-                  <div className="px-3 py-1.5 text-xs font-semibold text-zinc-400">Idioma Regional</div>
+                  <div className="px-3 py-1.5 text-xs font-semibold text-zinc-400">{t("header.regional_lang")}</div>
                   <div className="grid grid-cols-5 gap-1.5 p-1">
                     {[
                       { code: "es", flag: "🇪🇸" },
@@ -124,7 +124,7 @@ export default function Header() {
                     className="flex items-center gap-2 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-blue-500 hover:bg-blue-500/10 rounded-lg transition-all"
                   >
                     <Settings size={12} />
-                    Más Ajustes
+                    {t("header.more_settings")}
                   </Link>
                 </div>
               </div>
@@ -145,12 +145,12 @@ export default function Header() {
               {user ? (
                 <Link href={getPath("/profile")} className="flex items-center gap-4 group cursor-pointer">
                   <div className="flex flex-col items-end">
-                    <span className="text-zinc-200 text-xs font-semibold group-hover:text-blue-500 transition-colors">{profile?.displayName || "Mi Cuenta"}</span>
+                    <span className="text-zinc-200 text-xs font-semibold group-hover:text-blue-500 transition-colors">{profile?.displayName || t("header.my_account")}</span>
                     <button
                       onClick={(e) => { e.preventDefault(); logout(); }}
                       className="text-zinc-500 text-[9px] uppercase font-bold tracking-widest hover:text-red-500 transition-colors mt-0.5"
                     >
-                      Cerrar sesión
+                      {t("header.logout")}
                     </button>
                   </div>
                   <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 overflow-hidden group-hover:border-blue-500/40 transition-all shadow-inner">
@@ -163,7 +163,7 @@ export default function Header() {
                 </Link>
               ) : (
                 <Link href={getPath("/auth")} className="btn bg-white text-black hover:bg-zinc-200 shadow-lg shadow-white/5 font-bold text-xs" style={{ padding: '0.6rem 1.5rem', borderRadius: '12px' }}>
-                  Acceso
+                  {t("header.login")}
                 </Link>
               )}
             </div>
@@ -248,7 +248,7 @@ export default function Header() {
                     className="text-4xl font-bold uppercase tracking-tight text-blue-500 flex items-center gap-4"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Admin Panel
+                    {t("header.admin_panel")}
                     <ShieldCheck size={28} />
                   </Link>
                 </motion.div>
@@ -275,12 +275,12 @@ export default function Header() {
                     )}
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-bold text-sm tracking-tight">{profile?.displayName || "Mi Perfil"}</span>
+                    <span className="text-white font-bold text-sm tracking-tight">{profile?.displayName || t("header.my_account")}</span>
                     <button
                       onClick={(e) => { e.preventDefault(); logout(); setIsMenuOpen(false); }}
                       className="text-red-500 text-[10px] font-bold uppercase tracking-widest text-left mt-0.5"
                     >
-                      Cerrar sesión
+                      {t("header.logout")}
                     </button>
                   </div>
                 </Link>
@@ -291,7 +291,7 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <User size={22} />
-                  INICIAR SESIÓN
+                  {t("header.login").toUpperCase()}
                 </Link>
               )}
             </motion.div>

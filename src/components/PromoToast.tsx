@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Ticket, X, Copy, CheckCircle2, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PromoToast() {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [copied, setCopied] = useState(false);
   const PROMO_CODE = "ULTRA14";
@@ -61,8 +63,8 @@ export default function PromoToast() {
                     <Sparkles size={20} className="fill-current animate-pulse" />
                   </div>
                   <div>
-                    <h4 className="text-white text-sm font-black uppercase tracking-widest">Recompensa</h4>
-                    <p className="text-zinc-500 text-[11px] font-bold uppercase tracking-widest mt-0.5">Válido por 24h</p>
+                    <h4 className="text-white text-sm font-black uppercase tracking-widest">{t("promo.reward")}</h4>
+                    <p className="text-zinc-500 text-[11px] font-bold uppercase tracking-widest mt-0.5">{t("promo.valid")}</p>
                   </div>
                 </div>
                 <button 
@@ -76,7 +78,7 @@ export default function PromoToast() {
               {/* Body */}
               <div className="bg-white/[0.03] border border-white/[0.05] rounded-xl p-4 text-center">
                 <p className="text-zinc-300 text-sm font-medium leading-relaxed mb-3">
-                  Aprovecha un <span className="text-blue-400 font-black italic">14% EXTRA</span> de descuento usando nuestro código VIP.
+                  {t("promo.desc")}
                 </p>
                 <div className="inline-block bg-black border border-zinc-800 rounded-lg px-4 py-2 mb-1">
                   <span className="text-xl font-black tracking-[0.2em] text-white select-all">{PROMO_CODE}</span>
@@ -93,7 +95,7 @@ export default function PromoToast() {
                 }`}
               >
                 {copied ? <CheckCircle2 size={18} /> : <Ticket size={18} className="-rotate-45" />}
-                {copied ? "¡CÓDIGO COPIADO!" : "COPIAR CUPÓN"}
+                {copied ? t("promo.copied") : t("promo.copy")}
               </button>
             </div>
           </div>

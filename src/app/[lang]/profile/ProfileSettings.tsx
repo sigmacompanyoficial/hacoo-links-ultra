@@ -117,15 +117,15 @@ export default function ProfileSettings() {
           className="text-center mb-16 w-full"
         >
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter uppercase italic italic">
-            PANEL <span className="text-blue-500">DE CONTROL</span>
+            {t("profile.panel").split("DE")[0]} <span className="text-blue-500">{t("profile.panel").includes("DE") ? "DE CONTROL" : "PANEL"}</span>
           </h1>
           
           {/* Custom Tab Navigation */}
           <div className="flex items-center justify-center gap-2 p-1.5 bg-zinc-900/40 backdrop-blur-xl border border-white/5 rounded-2xl w-fit mx-auto">
             {[
-              { id: "profile", label: "Perfil", icon: User },
-              { id: "favorites", label: "Favoritos", icon: Heart },
-              { id: "settings", label: "Ajustes", icon: Settings },
+              { id: "profile", label: t("nav.profile"), icon: User },
+              { id: "favorites", label: t("cart.title"), icon: Heart },
+              { id: "settings", label: t("profile.settings"), icon: Settings },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -177,7 +177,7 @@ export default function ProfileSettings() {
                       </div>
                       <div className="text-center space-y-2">
                         <h2 className="text-3xl font-black text-white uppercase italic tracking-tight">
-                          {profile?.displayName || "Usuario"}
+                          {profile?.displayName || t("nav.profile")}
                         </h2>
                         <p className="text-zinc-500 font-bold text-xs uppercase tracking-widest">{user.email}</p>
                       </div>
@@ -191,18 +191,18 @@ export default function ProfileSettings() {
                           <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500">
                             <User size={20} />
                           </div>
-                          <h3 className="text-lg font-black text-white uppercase tracking-wider italic">Información Personal</h3>
+                          <h3 className="text-lg font-black text-white uppercase tracking-wider italic">{t("profile.info")}</h3>
                         </div>
                         
                         <form onSubmit={handleUpdateProfile} className="space-y-6">
                           <div className="space-y-3">
-                            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-1">Nombre Público</label>
+                            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-1">{t("profile.name")}</label>
                             <input 
                               name="display_name"
                               type="text" 
                               defaultValue={profile?.displayName || ""}
                               className="w-full h-16 bg-[#080808] border border-zinc-800 rounded-xl px-12 text-white font-bold focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/5 outline-none transition-all text-lg"
-                              placeholder="Tu nombre"
+                              placeholder={t("profile.name")}
                             />
                           </div>
                           <button 
@@ -210,7 +210,7 @@ export default function ProfileSettings() {
                             className="h-16 px-10 bg-white text-black rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 w-full md:w-auto"
                           >
                             <Save size={18} />
-                            {isUpdating ? "GUARDANDO..." : "ACTUALIZAR PERFIL"}
+                            {isUpdating ? t("profile.save") : t("profile.update")}
                           </button>
                         </form>
                       </div>
@@ -221,12 +221,12 @@ export default function ProfileSettings() {
                           <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
                             <Mail size={20} />
                           </div>
-                          <h3 className="text-lg font-black text-white uppercase tracking-wider italic">Cambiar Correo Electrónico</h3>
+                          <h3 className="text-lg font-black text-white uppercase tracking-wider italic">{t("profile.change_email")}</h3>
                         </div>
 
                         <form onSubmit={handleUpdateEmail} className="space-y-6">
                           <div className="space-y-3">
-                            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-1">Nuevo Email</label>
+                            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-1">{t("profile.new_email")}</label>
                             <div className="relative group/input">
                               <input 
                                 type="email" 
@@ -245,12 +245,12 @@ export default function ProfileSettings() {
                             className="h-16 px-10 bg-zinc-900 text-white rounded-xl font-black text-xs uppercase tracking-[0.2em] hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 transition-all flex items-center justify-center gap-3 w-full md:w-auto"
                           >
                             <RefreshCw size={18} className={isUpdatingEmail ? "animate-spin" : ""} />
-                            {isUpdatingEmail ? "PROCESANDO..." : "SOLICITAR CAMBIO"}
+                            {isUpdatingEmail ? t("profile.processing") : t("profile.request_change")}
                           </button>
                           <div className="p-6 bg-orange-500/5 rounded-2xl border border-orange-500/10">
                             <p className="text-[11px] text-zinc-500 font-bold leading-loose flex items-start gap-3">
                               <span className="text-orange-500 font-black shrink-0">AVISO:</span>
-                              Deberás confirmar el cambio en el enlace que enviaremos a tu correo actual y al nuevo para que sea efectivo por seguridad.
+                              {t("profile.email_notice")}
                             </p>
                           </div>
                         </form>
@@ -269,8 +269,8 @@ export default function ProfileSettings() {
                       <Lock size={28} />
                     </div>
                     <div className="text-left">
-                      <span className="block text-white font-black text-sm uppercase tracking-[0.1em] mb-1 italic">Seguridad</span>
-                      <span className="block text-zinc-500 font-bold text-xs uppercase tracking-widest">Resetear contraseña</span>
+                      <span className="block text-white font-black text-sm uppercase tracking-[0.1em] mb-1 italic">{t("profile.security")}</span>
+                      <span className="block text-zinc-500 font-bold text-xs uppercase tracking-widest">{t("profile.reset_password")}</span>
                     </div>
                   </button>
 
@@ -282,8 +282,8 @@ export default function ProfileSettings() {
                       <LogOut size={28} />
                     </div>
                     <div className="text-left">
-                      <span className="block text-red-500 font-black text-sm uppercase tracking-[0.1em] mb-1 italic">Sesión</span>
-                      <span className="block text-zinc-500 font-bold text-xs uppercase tracking-widest">Cerrar sesión actual</span>
+                      <span className="block text-red-500 font-black text-sm uppercase tracking-[0.1em] mb-1 italic">{t("profile.session")}</span>
+                      <span className="block text-zinc-500 font-bold text-xs uppercase tracking-widest">{t("profile.logout")}</span>
                     </div>
                   </button>
                 </div>
@@ -304,7 +304,7 @@ export default function ProfileSettings() {
                       <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500">
                         <Heart size={20} fill="currentColor" />
                       </div>
-                      <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Mis Favoritos</h3>
+                      <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">{t("profile.favorites")}</h3>
                     </div>
                     <span className="px-4 py-2 bg-blue-600/10 text-blue-500 border border-blue-500/20 rounded-xl text-[10px] font-black tracking-widest">{favoriteProducts.length} ITEMS</span>
                   </div>
@@ -327,7 +327,7 @@ export default function ProfileSettings() {
                             <div className="flex justify-between items-center">
                               <div className="flex flex-col">
                                 <span className="text-blue-500 font-black text-xl tracking-tighter">{product.price.toFixed(2)}€</span>
-                                <span className="text-[9px] text-zinc-600 font-black uppercase">Precio Ultra</span>
+                                <span className="text-[9px] text-zinc-600 font-black uppercase">{t("product.ultra_price")}</span>
                               </div>
                               <Link 
                                 href={`/${language}/product/${product.slug}`}
@@ -345,8 +345,8 @@ export default function ProfileSettings() {
                       <div className="w-20 h-20 bg-zinc-900 rounded-3xl flex items-center justify-center mx-auto mb-6 text-zinc-700">
                         <Heart size={32} />
                       </div>
-                      <p className="text-zinc-500 font-black uppercase tracking-[0.2em] text-xs">No tienes favoritos aún</p>
-                      <Link href={`/${language}/products`} className="mt-6 inline-block text-blue-500 font-black text-[10px] uppercase tracking-widest hover:underline">Ir a la tienda</Link>
+                      <p className="text-zinc-500 font-black uppercase tracking-[0.2em] text-xs">{t("profile.no_favorites")}</p>
+                      <Link href={`/${language}/products`} className="mt-6 inline-block text-blue-500 font-black text-[10px] uppercase tracking-widest hover:underline">{t("profile.go_shop")}</Link>
                     </div>
                   )}
                 </div>
@@ -366,7 +366,7 @@ export default function ProfileSettings() {
                     <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500">
                       <Globe size={24} />
                     </div>
-                    <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Preferencia de Idioma</h3>
+                    <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">{t("profile.lang_pref")}</h3>
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
@@ -404,7 +404,7 @@ export default function ProfileSettings() {
                       <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                         <Shield size={24} />
                       </div>
-                      <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Región de Compra</h3>
+                      <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">{t("profile.region")}</h3>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -443,7 +443,7 @@ export default function ProfileSettings() {
 
                   <div className="mt-12 p-6 bg-blue-500/5 rounded-3xl border border-blue-500/10">
                     <p className="text-blue-400/70 text-[10px] font-bold uppercase tracking-[0.15em] text-center leading-loose">
-                      * El idioma y la región se sincronizan para ofrecerte los mejores links de Hacoo disponibles en tu zona.
+                      * {t("profile.email_notice")}
                     </p>
                   </div>
                 </div>
@@ -457,13 +457,13 @@ export default function ProfileSettings() {
                       <div className="w-12 h-12 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500">
                         <Trash2 size={24} />
                       </div>
-                      <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Zona Peligrosa</h3>
+                      <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">{t("profile.danger")}</h3>
                     </div>
                     <p className="text-zinc-500 text-sm font-medium mb-10 max-w-md leading-relaxed">
-                      Eliminar tu cuenta es una acción irreversible. Perderás todos tus favoritos y configuraciones de forma permanente.
+                      {t("profile.delete_desc")}
                     </p>
                     <button className="h-14 px-8 bg-red-600/10 text-red-500 border border-red-500/20 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all active:scale-95">
-                      ELIMINAR MI CUENTA DEFINITIVAMENTE
+                      {t("profile.delete")}
                     </button>
                   </div>
                 </div>

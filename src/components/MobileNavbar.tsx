@@ -13,16 +13,16 @@ export default function MobileNavbar() {
   const pathname = usePathname();
   const { cartCount } = useCart();
   const { user } = useAuth();
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
 
   const getPath = (path: string) => `/${language}${path === '/' ? '' : path}`;
 
   const navItems = [
-    { icon: Home, label: "Inicio", href: "/" },
-    { icon: Search, label: "Catálogo", href: "/products" },
-    { icon: ShoppingBag, label: "Cesta", href: "/cart", count: cartCount },
-    { icon: Send, label: "Telegram", href: "https://t.me/hacoolinkssigma", external: true },
-    { icon: User, label: user ? "Perfil" : "Entrar", href: user ? "/profile" : "/auth" },
+    { icon: Home, label: t("nav.start"), href: "/" },
+    { icon: Search, label: t("nav.catalog"), href: "/products" },
+    { icon: ShoppingBag, label: t("nav.cart"), href: "/cart", count: cartCount },
+    { icon: Send, label: t("nav.telegram"), href: "https://t.me/hacoolinkssigma", external: true },
+    { icon: User, label: user ? t("nav.profile") : t("nav.login"), href: user ? "/profile" : "/auth" },
   ];
 
   return (

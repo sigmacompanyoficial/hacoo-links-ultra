@@ -18,7 +18,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, priority = false }: ProductCardProps) {
   const { user } = useAuth();
   const { addToCart } = useCart();
-  const { formatPrice, language } = useLanguage();
+  const { t, formatPrice, language } = useLanguage();
   
   const discount = Math.round(
     ((product.originalPrice - product.price) / product.originalPrice) * 100
@@ -58,7 +58,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
             {product.isExclusive && (
               <span className="bg-white/95 backdrop-blur-md text-black text-[9px] font-black uppercase px-2.5 py-1.5 rounded-md flex items-center gap-1.5 shadow-xl">
                 <Tag size={10} className="fill-current" />
-                Exclusivo
+                {t("product.exclusive")}
               </span>
             )}
             <span className="bg-blue-600 text-white text-[10px] font-black uppercase px-2.5 py-1.5 rounded-md shadow-xl w-max">
@@ -73,7 +73,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
               className={`w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-md shadow-xl transition-all ${
                 user ? "bg-black/60 text-white hover:bg-blue-600 border border-white/10" : "bg-black/40 text-zinc-400 cursor-not-allowed"
               }`}
-              title={user ? "Añadir a la cesta" : "Inicia sesión para añadir"}
+              title={user ? t("product.add_to_cart") : t("product.login_to_add")}
             >
               <ShoppingBag size={18} className={user ? "text-white" : ""} />
             </button>
@@ -96,7 +96,7 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
 
           <div className="mt-auto pt-4 flex items-end justify-between border-t border-white/[0.03]">
             <div className="flex flex-col">
-              <span className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-1">Precio Ultra</span>
+              <span className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-1">{t("product.ultra_price")}</span>
               <div className="flex items-baseline gap-2">
                 <span className="text-white text-xl font-black">{formatPrice(product.price)}</span>
                 <span className="text-zinc-600 text-xs line-through font-medium">{formatPrice(product.originalPrice)}</span>

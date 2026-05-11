@@ -54,7 +54,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white text-xs font-black uppercase tracking-widest mb-8 flex items-center gap-2">
               <span className="w-4 h-[1px] bg-blue-500"></span>
-              Actualizaciones & Alertas
+              {t("footer.updates")}
             </h4>
             <div className="flex flex-col gap-6">
               <p className="text-zinc-500 text-sm leading-relaxed">

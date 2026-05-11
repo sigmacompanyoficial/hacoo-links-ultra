@@ -21,7 +21,7 @@ export default function PushNotificationManager() {
       const hasAsked = localStorage.getItem("hacoo_push_asked");
       if (Notification.permission === "default" && !hasAsked) {
         // Retrasamos un poco el popup para no asustar al usuario nada más entrar
-        const timer = setTimeout(() => setShowPopup(true), 10000);
+        const timer = setTimeout(() => setShowPopup(true), 3000);
         return () => clearTimeout(timer);
       }
     }

@@ -22,7 +22,7 @@ const fadeInUp = {
 };
 
 function HomeContent() {
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const getPath = (path: string) => `/${language}${path}`;
   const searchParams = useSearchParams();
   const [showVerifiedToast, setShowVerifiedToast] = useState(false);
@@ -52,9 +52,17 @@ function HomeContent() {
             className="section-header mb-10 md:mb-16"
             {...fadeInUp}
           >
-            <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">¿Por qué elegir <span className="text-blue-500">Hacoo Ultra</span>?</h2>
+            <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">
+              {t("home.why_choose").includes("Hacoo Ultra") ? (
+                <>
+                  {t("home.why_choose").split("Hacoo Ultra")[0]}
+                  <span className="text-blue-500">Hacoo Ultra</span>
+                  {t("home.why_choose").split("Hacoo Ultra")[1]}
+                </>
+              ) : t("home.why_choose")}
+            </h2>
             <p className="text-zinc-500 text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
-              Filtramos miles de productos para traerte solo lo mejor al mejor precio, ahorrándote tiempo y dinero en cada compra.
+              {t("home.why_choose_desc")}
             </p>
           </motion.div>
           
@@ -67,8 +75,8 @@ function HomeContent() {
               <div className="feature-icon">
                 <Zap size={24} />
               </div>
-              <h3>Actualización diaria</h3>
-              <p>Más de 100 enlaces nuevos cada día con las últimas novedades y chollos del mercado.</p>
+              <h3>{t("home.daily_update")}</h3>
+              <p>{t("home.daily_update_desc")}</p>
             </motion.div>
             
             <motion.div 
@@ -79,8 +87,8 @@ function HomeContent() {
               <div className="feature-icon">
                 <ShieldCheck size={24} />
               </div>
-              <h3>Calidad Verificada</h3>
-              <p>Solo compartimos productos con excelentes reseñas y vendedores de máxima confianza comprobada.</p>
+              <h3>{t("home.verified_quality")}</h3>
+              <p>{t("home.verified_quality_desc")}</p>
             </motion.div>
             
             <motion.div 
@@ -91,8 +99,8 @@ function HomeContent() {
               <div className="feature-icon">
                 <Send size={24} />
               </div>
-              <h3>Comunidad Telegram</h3>
-              <p>Acceso exclusivo a ofertas flash que desaparecen en minutos. ¡Únete a más de 5,000 miembros!</p>
+              <h3>{t("home.telegram_comm")}</h3>
+              <p>{t("home.telegram_comm_desc")}</p>
             </motion.div>
           </div>
         </div>
@@ -108,11 +116,39 @@ function HomeContent() {
             {...fadeInUp}
           >
             <div className="text-center md:text-left">
-              <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">Novedades de la <span className="text-blue-500">semana</span></h2>
-              <p className="text-zinc-500 text-base md:text-xl max-w-2xl leading-relaxed">Los productos más top que acabamos de añadir al catálogo.</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">
+                {t("home.new_arrivals").includes("semana") ? (
+                  <>
+                    {t("home.new_arrivals").split("semana")[0]}
+                    <span className="text-blue-500">semana</span>
+                    {t("home.new_arrivals").split("semana")[1]}
+                  </>
+                ) : t("home.new_arrivals").includes("week") ? (
+                  <>
+                    {t("home.new_arrivals").split("week")[0]}
+                    <span className="text-blue-500">week</span>
+                    {t("home.new_arrivals").split("week")[1]}
+                  </>
+                ) : t("home.new_arrivals").includes("semaine") ? (
+                  <>
+                    {t("home.new_arrivals").split("semaine")[0]}
+                    <span className="text-blue-500">semaine</span>
+                    {t("home.new_arrivals").split("semaine")[1]}
+                  </>
+                ) : t("home.new_arrivals").includes("Woche") ? (
+                  <>
+                    {t("home.new_arrivals").split("Woche")[0]}
+                    <span className="text-blue-500">Woche</span>
+                    {t("home.new_arrivals").split("Woche")[1]}
+                  </>
+                ) : (
+                  t("home.new_arrivals")
+                )}
+              </h2>
+              <p className="text-zinc-500 text-base md:text-xl max-w-2xl leading-relaxed">{t("home.new_arrivals_desc")}</p>
             </div>
             <Link href={getPath("/products")} className="w-full md:w-auto bg-zinc-900 text-white px-8 py-4 rounded-2xl font-black text-sm border border-zinc-800 flex items-center justify-center gap-3 hover:bg-zinc-800 transition-all">
-              Ver catálogo completo
+              {t("home.view_catalog")}
               <ArrowRight size={18} />
             </Link>
           </motion.div>
@@ -136,19 +172,19 @@ function HomeContent() {
           >
             <div className="cta-content">
               <h2 className="cta-title">
-                ¿No quieres perderte ninguna oferta?
+                {t("home.cta_title")}
               </h2>
               <p className="cta-text">
-                Únete a nuestra comunidad en Telegram y recibe links directos cada día en tu móvil. ¡Es gratis y solo enviamos calidad!
+                {t("home.cta_desc")}
               </p>
               <div className="cta-actions flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start">
                 <a href="https://t.me/hacoolinkssigma" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-blue-600 text-white px-8 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-blue-500 transition-all shadow-2xl shadow-blue-500/20">
                   <Send size={20} />
-                  Unirme al Telegram
+                  {t("home.cta_telegram")}
                 </a>
                 <Link href={getPath("/products")} className="w-full sm:w-auto bg-zinc-900 text-white px-8 py-5 rounded-2xl font-black text-lg border border-zinc-800 flex items-center justify-center gap-3 hover:bg-zinc-800 transition-all">
                   <ShoppingBag size={20} />
-                  Explorar Catálogo
+                  {t("home.cta_explore")}
                 </Link>
               </div>
             </div>
